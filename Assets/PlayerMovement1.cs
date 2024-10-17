@@ -73,7 +73,7 @@ public class PlayerMovement : MonoBehaviour
     {
         return Physics2D.OverlapCircle(playerCheck.position, 0.2f, playerLayer);
     }
-
+   
 
     private bool IsWalled()
     {
