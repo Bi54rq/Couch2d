@@ -24,15 +24,22 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private Transform wallCheck;
     [SerializeField] private LayerMask wallLayer;
+    [SerializeField] private LayerMask playerLayer;
+    [SerializeField] private Transform playerCheck;
 
     private void Update()
     {
-        // Determine horizontal input based on playerID
-        horizontal = Input.GetAxisRaw("Horizontal" + playerID); // Use "Horizontal1" or "Horizontal2"
+        
+        horizontal = Input.GetAxisRaw("Horizontal" + playerID); 
 
-        if (Input.GetButtonDown("Jump" + playerID) && IsGrounded()) // Use "Jump1" or "Jump2"
+        if (Input.GetButtonDown("Jump" + playerID) && IsGrounded()) 
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpingPower);
+        }
+        
+        if(IsOnPlayer())
+        {
+            IsGrounded();
         }
 
         if (Input.GetButtonUp("Jump" + playerID) && rb.linearVelocity.y > 0f)
@@ -61,6 +68,12 @@ public class PlayerMovement : MonoBehaviour
     {
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
     }
+
+    private bool IsOnPlayer()
+    {
+        return Physics2D.OverlapCircle(playerCheck.position, 0.2f, playerLayer);
+    }
+
 
     private bool IsWalled()
     {
