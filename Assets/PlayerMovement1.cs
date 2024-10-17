@@ -1,7 +1,9 @@
 using UnityEngine;
 
-public class PlayerMovement1 : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
+    public int playerID; // Set this to 1 for Player 1, 2 for Player 2 in the Inspector
+
     private float horizontal;
     private float speed = 8f;
     private float jumpingPower = 16f;
@@ -25,14 +27,15 @@ public class PlayerMovement1 : MonoBehaviour
 
     private void Update()
     {
-        horizontal = Input.GetAxisRaw("Horizontal");
+        // Determine horizontal input based on playerID
+        horizontal = Input.GetAxisRaw("Horizontal" + playerID); // Use "Horizontal1" or "Horizontal2"
 
-        if (Input.GetButtonDown("Jump") && IsGrounded())
+        if (Input.GetButtonDown("Jump" + playerID) && IsGrounded()) // Use "Jump1" or "Jump2"
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpingPower);
         }
 
-        if (Input.GetButtonUp("Jump") && rb.linearVelocity.y > 0f)
+        if (Input.GetButtonUp("Jump" + playerID) && rb.linearVelocity.y > 0f)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * 0.5f);
         }
@@ -92,7 +95,7 @@ public class PlayerMovement1 : MonoBehaviour
             wallJumpingCounter -= Time.deltaTime;
         }
 
-        if (Input.GetButtonDown("Jump") && wallJumpingCounter > 0f)
+        if (Input.GetButtonDown("Jump" + playerID) && wallJumpingCounter > 0f)
         {
             isWallJumping = true;
             rb.linearVelocity = new Vector2(wallJumpingDirection * wallJumpingPower.x, wallJumpingPower.y);
