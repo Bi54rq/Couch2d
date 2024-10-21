@@ -3,7 +3,7 @@ using UnityEngine;
 public class Lever : MonoBehaviour
 {
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    
     public GameObject lever;
     public GameObject falling;
     public bool leverPulled = false;
@@ -20,9 +20,6 @@ public class Lever : MonoBehaviour
         
     }
   
-    
-   
-       
     
     void Update()
     {
