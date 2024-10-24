@@ -16,8 +16,8 @@ TagManager:
   - Wall1
   - Player
   - Wall2
-  - 
-  - 
+  - ButtonP2
+  - ButtonP1
   - 
   - 
   - 
@@ -42,6 +42,9 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Floor
+    uniqueID: 658740353
     locked: 0
   m_RenderingLayers:
   - Default
